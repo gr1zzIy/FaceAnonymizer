@@ -1,0 +1,262 @@
+# ==============
+# .NET специфічне
+# ==============
+
+## Build artifacts
+bin/
+obj/
+out/
+publish/
+
+## User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.psess
+*.vsp
+*.vspx
+*.sap
+
+## Rider / JetBrains
+.idea/
+*.sln.iml
+*.DotSettings.user
+*.DotSettings
+contentModel.xml
+.idea_modules/
+.run/
+.idea.*/
+
+## Visual Studio
+.vs/
+*.swp
+*.tmp
+*.temp
+*.cache
+*.ilk
+*.log
+*.tlog
+*.manifest
+*.prf
+*.rsp
+*.sbr
+
+## Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa]rm/
+[Aa]rm64/
+[Bb]uild/
+[Bb]uildOutput/
+bld/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+## .NET Core / .NET 6/7/8/9
+launchSettings.json
+appsettings.Development.json
+appsettings.Local.json
+secrets.json
+appsettings.*.json.user
+
+## Database
+*.mdf
+*.ldf
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+## Entity Framework Migrations
+Migrations/*.Designer.cs
+!Migrations/*.sql
+Migrations/__EFMigrationsHistory.cs
+
+## Testing
+TestResults/
+coverage/
+coverage*.json
+coverage*.xml
+coverage*.info
+TestResults.xml
+.testresult
+TestExecution.log
+*.trx
+*.coverage
+*.coveragexml
+coverlet/
+reports/
+
+## NuGet
+packages/
+*.nupkg
+*.snupkg
+nuget.exe
+nuget.config.user
+
+## Node.js / npm
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+## Client side
+wwwroot/lib/
+wwwroot/dist/
+
+# ==============
+# FaceAnonymizer специфічне
+# ==============
+
+## Тестові зображення (великі файли)
+TestImages/
+TestData/
+Samples/
+SampleImages/
+
+## Результати анонімізації
+Output/
+Anonymized/
+Processed/
+Temp/
+Cache/
+Results/
+
+## ML моделі (великі файли)
+Models/
+Weights/
+PretrainedModels/
+*.onnx
+*.pb
+*.h5
+*.keras
+*.pkl
+*.joblib
+*.caffemodel
+*.prototxt
+*.weights
+*.cfg
+
+## OpenCV специфічне
+haarcascades/
+lbpcascades/
+opencv_face_detector*
+*.cascade
+*.xml
+
+## Медіа файли (якщо є тестові)
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.bmp
+*.tiff
+*.mp4
+*.avi
+*.mov
+*.webm
+
+# ==============
+# macOS специфічне
+# ==============
+
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*.icloud
+.directory
+*.bak
+*.tmp
+*.temp
+*.lock
+*.swap
+*.orig
+*~
+*.pid
+*.seed
+*.pid.lock
+
+# ==============
+# Logs
+# ==============
+
+logs/
+Logs/
+*.log
+*.txt.log
+*.err
+*.error
+*.trace
+*.diag
+*.dump
+*.dmp
+*.etl
+*.evtx
+
+# ==============
+# Secrets & Security
+# ==============
+
+secrets.json
+appsettings.secrets.json
+.env
+.env.*
+!.env.example
+connectionstrings.json
+certificate.pfx
+*.pem
+*.key
+*.crt
+apikeys.json
+apikeys.config
+
+# ==============
+# Docker
+# ==============
+
+docker-compose.override.yml
+.dockerignore
+.docker/
+
+# ==============
+# Miscellaneous
+# ==============
+
+## Backup files
+*.backup
+*.old
+*.orig
+*.rej
+
+## Azure
+Properties/ServiceDependencies/
+Properties/PublishProfiles/*.pubxml.user
+
+## Benchmark
+BenchmarkDotNet.Artifacts/
+benchmark/
+
+## Профілювання
+*.perfview
+*.etl
+*.trace
+*.diagsession
+
+## Code coverage
+*.coverage
+*.coveragexml

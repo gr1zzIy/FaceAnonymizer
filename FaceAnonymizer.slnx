@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="FaceAnonymizer.Api/FaceAnonymizer.Api.csproj" />
+  <Project Path="FaceAnonymizer.Application/FaceAnonymizer.Application.csproj" />
+  <Project Path="FaceAnonymizer.Core/FaceAnonymizer.Core.csproj" />
+  <Project Path="FaceAnonymizer.Infrastructure/FaceAnonymizer.Infrastructure.csproj" />
+</Solution>
