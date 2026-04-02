@@ -1,6 +1,0 @@
-@FaceAnonymizer.Api_HostAddress = http://localhost:5125
-
-GET {{FaceAnonymizer.Api_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

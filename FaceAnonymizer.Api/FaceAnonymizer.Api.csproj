@@ -1,13 +1,38 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+  </PropertyGroup>
 
-    <PropertyGroup>
-        <TargetFramework>net10.0</TargetFramework>
-        <Nullable>enable</Nullable>
-        <ImplicitUsings>enable</ImplicitUsings>
-    </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FaceAnonymizer.Core\FaceAnonymizer.Core.csproj" />
+    <ProjectReference Include="..\FaceAnonymizer.Application\FaceAnonymizer.Application.csproj" />
+    <ProjectReference Include="..\FaceAnonymizer.Infrastructure\FaceAnonymizer.Infrastructure.csproj" />
+  </ItemGroup>
 
-    <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.5"/>
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Options" Version="10.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="assets\**\*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="models\MiniFASNetV2.onnx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="storage\batch-output\run_20260301_123543_1672\summary.json" />
+    <_ContentIncludedByDefault Remove="storage\batch-output\run_20260301_124147_6166\summary.json" />
+    <_ContentIncludedByDefault Remove="storage\batch-output\run_20260309_195645_7564\summary.json" />
+    <_ContentIncludedByDefault Remove="storage\batch-output\run_20260309_211633_7154\summary.json" />
+  </ItemGroup>
 </Project>
+
