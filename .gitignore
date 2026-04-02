@@ -133,7 +133,7 @@ Cache/
 Results/
 
 ## ML моделі (великі файли)
-Models/
+FaceAnonymizer.ML/Models/
 Weights/
 PretrainedModels/
 *.onnx
