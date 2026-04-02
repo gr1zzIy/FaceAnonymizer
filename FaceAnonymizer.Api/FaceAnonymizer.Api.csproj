@@ -27,7 +27,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="models\MiniFASNetV2.onnx">
+    <None Include="Models\MiniFASNetV2.onnx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
@@ -38,4 +38,3 @@
     <_ContentIncludedByDefault Remove="storage\batch-output\run_20260309_211633_7154\summary.json" />
   </ItemGroup>
 </Project>
-
