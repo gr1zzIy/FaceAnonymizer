@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="uk">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Face Anonymizer</title>
+        <link rel="stylesheet" href="/css/main.css" />
+        
+        <!-- Швидка ініціалізація теми для запобігання FOUC -->
+        <script>
+            (function() {
+                var saved = localStorage.getItem("theme");
+                var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+                var theme = saved || (prefersDark ? "dark" : "light");
+                document.documentElement.dataset.theme = theme;
+            })();
+        </script>
+    </head>
+    <body>
+        <header class="header">
+          <div>
+            <h1>Face Anonymizer</h1>
+        
+            <nav class="tabs" aria-label="Tabs">
+              <button class="tab is-active" data-tab="single" type="button">Одне зображення</button>
+              <button class="tab" data-tab="batch" type="button">Пакетна обробка</button>
+            </nav>
+
+            <button id="themeToggle" class="btn-theme" type="button" title="Переключити тему">🌙</button>
+          </div>
+        </header>
+    
+        <main class="container">
+          <section id="tab-single" class="tab-pane">
+            <div class="layout">
+              <article class="card">
+                <header class="card__head">
+                  <h2>Завантаження та налаштування</h2>
+                </header>
+        
+                <div class="card__body">
+                  <label class="field">
+                    <span class="field__label">Зображення</span>
+                    <input id="image" class="input is-hidden" type="file" accept="image/*" />
+                    <div id="singleDropZone" class="dropzone" role="button" tabindex="0">
+                      <div class="dropzone__title">Перетягніть зображення сюди</div>
+                      <div class="dropzone__meta muted">Або клацніть для вибору</div>
+                      <div id="singlePickedInfo" class="muted" style="margin-top:8px"></div>
+                    </div>
+                  </label>
+        
+          <div class="grid2">
+            <label class="field">
+              <span class="field__label">Двигун</span>
+              <select id="engine" class="select"></select>
+            </label>
+
+            <label class="field">
+              <span class="field__label">Метод</span>
+              <select id="method" class="select"></select>
+            </label>
+          </div>
+
+          <label class="field is-hidden" id="colorField">
+            <span class="field__label">Колір заливки</span>
+            <input id="colorPicker" class="color-picker" type="color" value="#000000" />
+          </label>
+
+          <label class="field">
+              <span class="field__label">
+                Інтенсивність: <span id="strengthLabel" class="mono">0.75</span>
+              </span>
+            <input id="strength" class="range" type="range" min="0" max="1" step="0.05" value="0.75" />
+          </label>
+        
+                  <label class="check">
+                    <input id="evaluate" type="checkbox" checked />
+                    <span>Оцінювати IoU</span>
+                  </label>
+        
+                  <div class="actions">
+                    <button id="btnDetect" class="btn btn--ghost" type="button">Виявити</button>
+                    <button id="btnAnon" class="btn" type="button">Анонімізувати</button>
+                  </div>
+        
+                  <div id="singleProgress" class="progress is-hidden">
+                    <div class="progress__bar">
+                      <div id="singleProgressBar" class="progress__fill"></div>
+                    </div>
+                    <div id="singleProgressText" class="progress__text">Обробка…</div>
+                  </div>
+        
+                  <div id="singleKpi" class="kpi"></div>
+                </div>
+              </article>
+        
+              <article class="card card--preview">
+                <header class="card__head">
+                  <h2>Результат</h2>
+                </header>
+        
+                <div class="card__body">
+                  <div class="preview-frame">
+                    <div id="imgWrap" class="placeholder">Результату поки немає…</div>
+                    <img id="imgOut" class="is-hidden" alt="Вихідне зображення" src="" />
+                  </div>
+                </div>
+              </article>
+            </div>
+          </section>
+        
+          <section id="tab-batch" class="tab-pane is-hidden">
+            <div class="layout">
+              <article class="card">
+                <header class="card__head">
+                  <h2>Завантаження та обробка</h2>
+                </header>
+        
+                <div class="card__body">
+                  <label class="field">
+                    <span class="field__label">Run ID (опціонально)</span>
+                    <input id="runId" class="input" type="text" placeholder="Залиште пустим для авто-генерації" />
+                  </label>
+        
+                  <label class="field">
+                    <input id="batchFiles" class="input is-hidden" type="file" multiple accept="image/*" />
+                    <div id="dropZone" class="dropzone" role="button" tabindex="0">
+                      <div class="dropzone__title">Перетягніть файли або папку сюди</div>
+                      <div class="dropzone__meta muted">Або клацніть для вибору</div>
+                      <div id="pickedInfo" class="muted" style="margin-top:8px"></div>
+                    </div>
+                  </label>
+        
+          <div class="actions">
+            <button id="btnUpload" class="btn btn--ghost" type="button">📤 Завантажити</button>
+            <button id="btnRunBatch" class="btn" type="button" disabled>▶ Запустити обробку</button>
+          </div>
+
+          <div class="grid2" style="margin-top: 28px;">
+            <label class="field">
+              <span class="field__label">Двигун</span>
+              <select id="batchEngine" class="select"></select>
+            </label>
+
+            <label class="field">
+              <span class="field__label">Метод</span>
+              <select id="batchMethod" class="select"></select>
+            </label>
+          </div>
+
+          <label class="field is-hidden" id="batchColorField">
+            <span class="field__label">Колір заливки</span>
+            <input id="batchColorPicker" class="color-picker" type="color" value="#000000" />
+          </label>
+
+          <label class="field">
+              <span class="field__label">
+                Інтенсивність: <span id="batchStrengthLabel" class="mono">0.75</span>
+              </span>
+            <input id="batchStrength" class="range" type="range" min="0" max="1" step="0.05" value="0.75" />
+          </label>
+        
+                  <label class="check">
+                    <input id="batchEvaluate" type="checkbox" checked />
+                    <span>Оцінювати IoU</span>
+                  </label>
+        
+                  <div id="batchProgress" class="progress is-hidden">
+                    <div class="progress__bar">
+                      <div id="batchProgressBar" class="progress__fill"></div>
+                    </div>
+                    <div id="batchProgressText" class="progress__text">Обробка…</div>
+                  </div>
+        
+                  <div id="batchInfo" class="muted"></div>
+                  <div id="batchKpi" class="kpi"></div>
+                </div>
+              </article>
+        
+              <article class="card">
+                <header class="card__head">
+                  <h2>Результати</h2>
+                </header>
+        
+                <div class="card__body">
+                  <div class="viewer" id="batchViewer">
+                    <div class="viewer__top">
+                      <div class="viewer__title">Перегляд</div>
+                      <div class="viewer__meta muted" id="batchViewerMeta">—</div>
+                    </div>
+        
+            <div class="preview-frame">
+              <div id="batchImgPlaceholder" class="placeholder">Оберіть файл або натисніть «Далі»</div>
+              <img id="batchImg" class="image is-hidden" alt="Результат пакетної обробки" src="" />
+            </div>
+        
+                    <div class="viewer__controls">
+                      <button id="btnPrev" class="btn btn--ghost" type="button" disabled>← Назад</button>
+                      <div class="viewer__counter mono" id="batchCounter">0 / 0</div>
+                      <button id="btnNext" class="btn btn--ghost" type="button" disabled>Далі →</button>
+        
+                      <div class="viewer__toggle" role="group" aria-label="Preview mode">
+                        <button id="btnModeAnon" class="seg is-active" type="button">Анонім.</button>
+                        <button id="btnModeDetect" class="seg" type="button">Виявл.</button>
+                      </div>              
+                      
+                      <a id="batchOpenLink" class="viewer__open is-hidden" target="_blank" rel="noreferrer">↗ Відкрити</a>
+                    </div>
+                  </div>
+        
+                  <div id="batchReports"></div>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <!-- DEBUG -->
+          <section id="tab-debug" class="tab-pane is-hidden">
+            <article class="card">
+              <header class="card__head">
+                <h2>API відповідь</h2>
+              </header>
+              <div class="card__body">
+                <pre id="out" class="code">{}</pre>
+              </div>
+            </article>
+          </section>
+        </main>
+    
+        <!-- Modal для перегляду зображення -->
+        <div id="imageModal" class="modal">
+          <div class="modal__content">
+            <button class="modal__close" id="modalClose">&times;</button>
+            <img id="modalImage" class="modal__image" alt="Повноекранний перегляд" src="" />
+          </div>
+        </div>
+    
+        <footer class="container footer muted">
+          <span>Система автоматичної анонімізації облич</span>
+        </footer>
+    
+        <!-- Модульні скрипти (ES6 modules) -->
+        <script type="module" src="/js/main.js"></script>
+    </body>
+</html>

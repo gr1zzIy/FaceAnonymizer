@@ -1,0 +1,77 @@
+﻿/* ========================================
+   RESPONSIVE
+   ======================================== */
+
+@media (max-width: 768px) {
+    .container {
+        padding: 16px;
+    }
+
+    .header > div {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .tabs {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .tab {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+
+    .dropzone {
+        padding: 24px 12px;
+    }
+
+    .preview-frame {
+        height: 350px;
+    }
+
+    .viewer__controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .viewer__controls > * {
+        width: 100%;
+    }
+
+    .viewer__toggle {
+        justify-content: center;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .actions {
+        flex-direction: column;
+    }
+
+    .actions .btn {
+        width: 100%;
+    }
+}
+
+/* Для дуже маленьких екранів */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 22px;
+    }
+
+    .card__head, .card__body {
+        padding: 16px;
+    }
+
+    .file {
+        flex-wrap: wrap;
+    }
+
+    .file small {
+        white-space: normal;
+    }
+}

@@ -1,0 +1,61 @@
+﻿/* ========================================
+   KPI & PILLS
+   ======================================== */
+
+.kpi {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+}
+
+.pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    font-size: 13px;
+    background: var(--surface-dark);
+    color: var(--text-primary);
+    border-radius: 20px;
+    border: none;
+    white-space: nowrap;
+}
+
+.kpi a {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 20px;
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    transition: all 0.2s ease;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.kpi a:hover {
+    background: var(--primary);
+    color: white;
+    text-decoration: none;
+    transform: translateY(-1px);
+}
+
+/* Code Block */
+.code {
+    background: #1e293b;
+    color: #e2e8f0;
+    padding: 16px;
+    border-radius: var(--radius-lg);
+    overflow: auto;
+    max-height: 460px;
+    margin: 0;
+    border: 1px solid #334155;
+    font-family: 'Fira Code', monospace;
+    font-size: 12px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    word-break: break-word;
+}

@@ -1,0 +1,38 @@
+﻿/* ========================================
+   CARDS & SECTIONS
+   ======================================== */
+
+.card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.2s ease;
+    overflow: hidden;
+    width: 100%;
+    height: fit-content;
+}
+
+.card__head {
+    padding: 24px 28px 16px;
+    background: transparent;
+    border-bottom: none;
+}
+
+.card__body {
+    padding: 0 28px 28px;
+}
+
+.card--preview {
+    grid-column: 2;
+    grid-row: span 2;
+    position: sticky;
+    top: 100px;
+}
+
+@media (max-width: 1024px) {
+    .card--preview {
+        grid-column: 1;
+        position: static;
+    }
+}

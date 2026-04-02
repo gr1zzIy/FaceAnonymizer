@@ -1,0 +1,36 @@
+﻿/* ========================================
+   DROP ZONE
+   ======================================== */
+
+.dropzone {
+    border: 2px dashed var(--border);
+    border-radius: var(--radius-lg);
+    padding: 40px 20px;
+    background: var(--surface);
+    cursor: pointer;
+    user-select: none;
+    text-align: center;
+    transition: all 0.25s ease;
+    margin-top: 8px;
+    width: 100%;
+}
+
+.dropzone:hover,
+.dropzone.is-over {
+    border-color: var(--primary);
+    background: var(--primary-light);
+    transform: scale(1.01);
+}
+
+.dropzone__title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+    word-break: break-word;
+}
+
+.dropzone__meta {
+    font-size: 13px;
+    color: var(--text-secondary);
+}

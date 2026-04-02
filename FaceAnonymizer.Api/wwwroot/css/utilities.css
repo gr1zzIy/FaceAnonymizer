@@ -1,0 +1,22 @@
+﻿/* ========================================
+   UTILITIES
+   ======================================== */
+
+.is-hidden {
+    display: none !important;
+}
+
+.muted {
+    color: var(--text-muted);
+}
+
+.mono {
+    font-family: 'Fira Code', monospace;
+}
+
+.placeholder {
+    color: var(--text-secondary);
+    padding: 24px 12px;
+    text-align: center;
+    font-size: 14px;
+}
